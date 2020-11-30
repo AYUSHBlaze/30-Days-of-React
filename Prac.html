@@ -1,56 +1,58 @@
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <meta charset="utf-8">
-            <title>Just Practicing, You know.</title>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js"></script>
-            <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-            <link href="Timeline.css" rel="stylesheet" type="text/css"/>
-        </head>
-        <body>
-            <div class="demo">
-                <div class="notificationsFrame">
-                    <div id="app"></div>
-                </div>
-            </div>
-            <script type="text/babel">
-                class Content extends React.Component{
-                    render(){
-                        const{activity}=this.props; //ES6 Destructuring
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Clock with State</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <link href="Clock.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div id="app"></div>
+        </div>
+        <script type="text/babel">
+            class Clock extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.state=this.getTime();
+                }
 
-                        return(
-                            <div className="content">
-                                <div className="line"></div>
+                componentDidMount(){
+                    this.setTimer();
+                }
 
-                                <div className="item">
-                                    <div className="avatar">
-                                        <img alt={activity.text} src={activity.user.avatar}/>
-                                        {activity.user.name}
-                                </div>
-                                <span className="time">{activity.timestamp}</span>
-                                <p>{activity.text}</p>
-                                <div className="commentCount">{activity.comments.lenght}</div>
-                            </div>
-                            </div>
-                        );
+                setTimer(){
+                    clearTimeout(this.timeout);
+                    this.timeout=setTimeout(this.updateClock.bind(this), 1000);
+                }
+
+                updateClock(){
+                    this.setState(this.getTime, this.setTimer);
+                }
+
+                getTime(){
+                    const currentTime=new Date();
+                    return{
+                        hours: currentTime.getHours(),
+                        minutes: currentTime.getMinutes(),
+                        seconds: currentTime.getSeconds(),
+                        ampm: currentTime.getHours() >= 12 ? 'pm' : 'am'
                     }
                 }
-                const moment1 = {
-                    timestamp: new Date().getTime(),
-                    text: "Ate lunch",
-                        user: {
-                        id: 1,
-                        name: "Nate",
-                        avatar: "http://www.croop.cl/UI/twitter/images/doug.jpg"
-                    },
-                    comments: [{ from: "Ari", text: "Me too!" }]
-                    };
-                ReactDOM.render(
-                    <Content activity={moment1}/>,
-                    document.querySelector("#app")
-                );
-            </script>
-        </body>
-    </html>
+
+                render(){
+                    const {hours, minutes, seconds, ampm} = this.state;
+          return (
+                <div className="clock">
+                    {hours == 0 ? 12 : hours > 12 ? hours - 12 : hours}:
+                    {minutes > 9 ? minutes : `0${minutes}`}:
+                    {seconds > 9 ? seconds : `0${seconds}`} {ampm}
+                </div>
+          );
+        }
+                }
+                ReactDOM.render(<Clock />, document.querySelector("#app"));
+        </script>
+    </body>
+</html>
