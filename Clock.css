@@ -4,6 +4,7 @@
     --textColor: #fff;
   }
   
+
   .clock {
     position: relative;
     border-radius: 0.5em;
@@ -18,6 +19,7 @@
     background: var(--firstColor);
   }
   
+
   @media only screen and (min-width: 700px) and (max-width: 1000px) {
     .clock {
       font-size: 50px;
@@ -29,6 +31,7 @@
       font-size: 45px;
     }
   }
+
   
   @media only screen and (min-width: 200px) and (max-width: 499px) {
     .clock {
