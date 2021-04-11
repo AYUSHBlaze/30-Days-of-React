@@ -21,7 +21,7 @@ class EventBind extends Component {
     render(){
         return(
             <div>
-                <div>{this.state.message}</div>
+                <div>{this.setState}</div>
                 <button onClick={this.clickHandler}>Click!</button>
             </div>
         )
