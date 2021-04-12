@@ -16,7 +16,7 @@ class LifecycleA extends Component {
         return null
     }
 
-    componentDidMount(){
+    componentDidMount(props){
         console.log('LifecycleA componentDidMount')
     }
 
@@ -44,11 +44,10 @@ class LifecycleA extends Component {
         console.log('LifecycleA render')
         return(<div>
             <div>Lifecycle A</div>
-            <button onClick={this.changeState}>Change State</button>
-            <LifecycleB/>
+        
             </div>
         )
     }
 }
 
-export default LifecycleA
+export default LifecycleB
