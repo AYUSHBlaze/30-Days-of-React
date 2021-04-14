@@ -12,11 +12,7 @@ export class Form extends Component {
         }
     }
 
-    handleUsernameChange = (event) => {
-        this.setState({
-            username: event.target.value
-        })
-    }
+    
 
     handleCommentsChange = (event) => {
         this.setState({
