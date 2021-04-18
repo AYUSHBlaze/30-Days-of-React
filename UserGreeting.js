@@ -15,13 +15,7 @@ class UserGreeting extends Component{
             <div>Ayush</div>:
             <div>Guest</div>
         )
-        // let message
-        // if(this.state.isLoggedIn){
-        //     message=<div>Welcome my love!</div>
-        // }else{
-        //     message=<div>Welcome Guest...</div>
-        // }
-        // return <div>{message}</div>
+        
 
         // if(this.state.isLoggedIn){
         //     return(
