@@ -13,6 +13,7 @@ class ClassCounterone extends Component{
     }
 
     componentDidUpdate(prevProps, prevState){
+        
         document.title = `Clicked ${this.state.count} times`
     }
 
